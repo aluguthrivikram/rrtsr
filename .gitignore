@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+node_modules/
+coverage/
+.nyc_output/
+.DS_Store
+Thumbs.db
+*.log
+playwright-report/
+test-results/

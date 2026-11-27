@@ -1,0 +1,18 @@
+{
+  "name": "clearskies-promptwars",
+  "version": "2.2.1",
+  "private": true,
+  "type": "module",
+  "description": "A privacy-conscious clean-air companion for Indian households",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "test:coverage": "node --experimental-test-coverage --test",
+    "check": "node --check server.js && node --check src/aqi.js && node --check src/impact.js && node --check src/recommendations.js && node --check src/validation.js && node --check public/js/app.js && node --check public/js/household-twin.js",
+    "smoke": "node test/smoke.js"
+  }
+}
