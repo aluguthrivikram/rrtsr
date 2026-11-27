@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1916">
+  <meta name="description" content="ClearSkies helps Indian households understand air quality, reduce exposure and make practical low-emission choices.">
+  <title>ClearSkies — Breathe Smarter. Live Lighter.</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/app.js?v=2.2.1" type="module"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="ClearSkies home"><span class="brand-mark" aria-hidden="true">✳</span><span>ClearSkies</span></a>
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="#air">Air quality</a><a href="#recommendations">Your plan</a><a href="#impact">Impact</a><a href="#digital-twin">Household twin</a><a href="#indoor">Indoor air</a><a href="#family">Family</a><a href="#methodology">Methodology</a>
+  </nav>
+  <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+</header>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+  <a href="#air">Air quality</a><a href="#recommendations">Your plan</a><a href="#impact">Impact</a><a href="#digital-twin">Household twin</a><a href="#indoor">Indoor air</a><a href="#family">Family</a><a href="#methodology">Methodology</a>
+</nav>
+<main id="main">
+  <section id="home" class="hero section-shell">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="live-dot"></span> CLEAN AIR, PRACTICAL ACTION</p>
+      <h1>Breathe smarter.<br><span>Live lighter.</span></h1>
+      <p class="hero-lede">A clear-headed companion for cleaner indoor air, safer daily routines and lower-emission choices — built around your household, not one-size-fits-all advice.</p>
+      <div class="hero-actions"><a class="button button-primary" href="#profile">Build my clean-air plan <span aria-hidden="true">→</span></a><a class="text-link" href="#methodology">Explore how it works</a></div>
+      <div class="trust-row"><span>◈ India-aware guidance</span><span>◈ Transparent estimates</span><span>◈ Works without AI</span></div>
+    </div>
+    <div class="hero-visual" aria-label="Decorative illustration of a clean-air horizon">
+      <div class="sun"></div><div class="horizon h1"></div><div class="horizon h2"></div><div class="horizon h3"></div>
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="hero-note"><span class="note-icon">✦</span><div><strong>Small shifts add up</strong><small>Less exposure. Fewer unnecessary trips.</small></div></div>
+    </div>
+  </section>
+
+  <section id="profile" class="section-shell profile-section">
+    <div class="section-intro"><p class="eyebrow">01 / YOUR HOUSEHOLD</p><h2>Start with your everyday context.</h2><p>These details help prioritise practical changes. Nothing here is sent to the AI provider unless you ask the assistant a question.</p></div>
+    <form id="profile-form" class="panel profile-grid">
+      <div class="field"><label for="city">City or district</label><input id="city" name="city" value="Visakhapatnam" maxlength="100" autocomplete="address-level2" required><small>Used to look up modelled outdoor air-quality data.</small></div>
+      <div class="field"><label for="household-size">Household size</label><input id="household-size" name="householdSize" type="number" min="1" max="20" value="4" required></div>
+      <div class="field"><label for="budget">Monthly improvement budget</label><select id="budget" name="budget"><option value="low">Low / no-cost first</option><option value="medium">Some flexibility</option><option value="flexible">Flexible</option></select></div>
+      <div class="field"><label for="commute">Usual commute</label><select id="commute" name="commute"><option value="two-wheeler">Two-wheeler</option><option value="car">Private car</option><option value="bus">Public bus</option><option value="auto">Auto-rickshaw</option><option value="walk">Walk / cycle</option><option value="mixed">Mixed commute</option></select></div>
+      <div class="field"><label for="schedule">Typical outdoor schedule</label><select id="schedule" name="schedule"><option value="morning">Early morning</option><option value="daytime">Daytime</option><option value="evening">Evening</option><option value="variable">Changes day to day</option></select></div>
+      <div class="field"><label for="home-type">Home type</label><select id="home-type" name="home"><option>Apartment</option><option>Independent house</option><option>Shared accommodation</option></select></div>
+      <fieldset class="field full"><legend>Who needs extra consideration at home?</legend><div class="check-row"><label><input type="checkbox" name="vulnerable" value="children"> Children</label><label><input type="checkbox" name="vulnerable" value="older-adults"> Older adults</label><label><input type="checkbox" name="vulnerable" value="respiratory"> Existing heart or lung condition</label></div></fieldset>
+      <div class="field"><label for="filtration">Indoor filtration</label><select id="filtration" name="filtration"><option value="none">No air cleaner</option><option value="hepa">Mechanical HEPA air cleaner</option><option value="ac-filter">Room AC / filter</option><option value="unsure">Not sure</option></select></div>
+      <div class="field field-action"><button class="button button-primary" type="submit">Save household profile <span aria-hidden="true">→</span></button><span id="profile-status" class="form-status" role="status" aria-live="polite"></span></div>
+    </form>
+  </section>
+
+  <section id="air" class="section-shell">
+    <div class="section-heading"><div><p class="eyebrow">02 / OUTDOOR CONDITIONS</p><h2>Know the air around you.</h2><p>Modelled pollutant concentrations can help you plan — but they are not a substitute for official monitoring-station data.</p></div><div class="section-tools"><button id="refresh-air" class="button button-secondary" type="button">Refresh air data ↻</button><button id="demo-air" class="button button-quiet" type="button">Load demo data</button></div></div>
+    <div id="air-status" class="status-line" role="status" aria-live="polite">Choose Refresh air data to look up the selected city.</div>
+    <div class="air-grid">
+      <article class="panel air-main">
+        <div class="panel-top"><span class="eyebrow">INDIA · CPCB BREAKPOINT INDICATOR</span><span id="air-mode" class="status-chip">Not loaded</span></div>
+        <div class="aqi-reading"><div><span class="muted-label">Indicative AQI</span><strong id="aqi-value">—</strong><span id="aqi-category" class="aqi-category">No reading yet</span></div><div class="aqi-ring" aria-hidden="true"><span>✳</span></div></div>
+        <p id="aqi-explanation" class="body-muted">Load model data or explicitly choose demo data. No live measurement is assumed.</p>
+        <div class="data-meta"><span id="air-location">Location not selected</span><span id="air-updated">Updated —</span></div>
+        <p id="air-caveat" class="small-note">CPCB AQI is normally based on validated station measurements and pollutant-specific averaging periods. Model-derived estimates are labelled separately.</p>
+      </article>
+      <article class="panel pollutant-panel"><div class="panel-top"><h3>Pollutant snapshot</h3><span class="muted-label">µg/m³ unless noted</span></div><div id="pollutants" class="pollutant-list"><p class="empty-state">Pollutant values will appear here after a lookup.</p></div><p class="small-note">CO is shown in mg/m³. A missing pollutant is shown as unavailable, never as zero.</p></article>
+    </div>
+    <div class="notice-card"><span aria-hidden="true">ⓘ</span><p><strong>Know what you're seeing.</strong> Open-Meteo provides CAMS model forecasts at grid resolution. The location can be several kilometres from the requested point. For official regulatory AQI and advisories, check CPCB or your State Pollution Control Board.</p><a href="https://cpcb.nic.in/" target="_blank" rel="noopener noreferrer">CPCB website ↗</a></div>
+  </section>
+
+  <section id="recommendations" class="section-shell">
+    <div class="section-heading"><div><p class="eyebrow">03 / PERSONAL ACTION PLAN</p><h2>Make the next choice a better one.</h2><p>Prioritised for your household profile, budget and current air-quality context.</p></div><button id="build-plan" class="button button-secondary" type="button">Update my plan ↻</button></div>
+    <div id="recommendation-groups" class="recommendation-groups"><p class="empty-state">Save your household profile to generate recommendations.</p></div>
+  </section>
+
+  <section id="assistant" class="section-shell assistant-section">
+    <div class="section-intro"><p class="eyebrow">04 / ASK CLEARSKIES</p><h2>Good questions. Practical answers.</h2><p>Gemini can personalise the explanation. If it is not configured or temporarily unavailable, a built-in guidance engine responds instead.</p></div>
+    <div class="panel assistant-panel">
+      <div class="assistant-heading"><div class="assistant-avatar" aria-hidden="true">✳</div><div><strong>ClearSkies assistant</strong><span id="ai-state" class="assistant-state">Checking service…</span></div><span class="status-chip">Safety-first AI</span></div>
+      <div class="prompt-chips" aria-label="Suggested questions"><button type="button" class="prompt-chip" data-question="How should my family adjust outdoor activity when air quality is poor?">Family routine during poor air</button><button type="button" class="prompt-chip" data-question="How can I improve indoor air without buying an expensive purifier?">Low-cost indoor air ideas</button><button type="button" class="prompt-chip" data-question="Compare a two-wheeler trip with a bus for a short commute.">Cleaner commute options</button></div>
+      <form id="assistant-form"><label class="sr-only" for="question">Ask ClearSkies a question</label><textarea id="question" maxlength="1200" rows="3" placeholder="Ask about your commute, indoor air, family routines or practical ways to reduce emissions…" required></textarea><div class="assistant-controls"><span class="small-note">Your saved profile is sent with this question. Do not enter private medical details.</span><button id="ask-button" class="button button-primary" type="submit">Ask ClearSkies ↗</button></div></form>
+      <div id="assistant-output" class="assistant-output" role="status" aria-live="polite" aria-atomic="true"><p class="empty-state">Your answer will appear here. AI advice is general information, not medical diagnosis.</p></div>
+    </div>
+  </section>
+
+  <section id="impact" class="section-shell">
+    <div class="section-heading"><div><p class="eyebrow">05 / MEASURABLE CHOICES</p><h2>See the impact of a different trip.</h2><p>Estimate tailpipe CO₂ changes using documented India vehicle factors and explicit passenger assumptions.</p></div><span class="status-chip">Transparent estimate</span></div>
+    <div class="impact-grid">
+      <form id="impact-form" class="panel">
+        <div class="field"><label for="monthly-km">Monthly distance for trips you could change (km)</label><input id="monthly-km" type="number" min="0" max="10000" value="120" required></div>
+        <div class="field"><label for="current-mode">Current vehicle</label><select id="current-mode"><option value="two-wheeler">Two-wheeler</option><option value="car" selected>Private car</option><option value="auto">Auto-rickshaw</option><option value="bus">Public bus</option></select></div>
+        <div class="field"><label for="alternative-mode">Alternative for those trips</label><select id="alternative-mode"><option value="bus" selected>Public bus</option><option value="auto">Shared auto-rickshaw</option><option value="car">Carpool / shared car</option><option value="walk">Walk / cycle</option><option value="two-wheeler">Two-wheeler</option></select></div>
+        <div class="field two-fields"><div><label for="current-occupancy">People in current vehicle</label><input id="current-occupancy" type="number" min="1" max="100" value="1"></div><div><label for="alternative-occupancy">People in alternative vehicle</label><input id="alternative-occupancy" type="number" min="1" max="100" value="30"></div></div>
+        <div class="field two-fields"><div><label for="current-cost">Current monthly spend (₹)</label><input id="current-cost" type="number" min="0" max="1000000" value="1800"></div><div><label for="alternative-cost">Alternative monthly spend (₹)</label><input id="alternative-cost" type="number" min="0" max="1000000" value="900"></div></div>
+        <button class="button button-primary" type="submit">Calculate my scenarios →</button>
+      </form>
+      <div class="panel impact-results"><div class="impact-highlight"><span class="muted-label">Estimated monthly tailpipe CO₂ avoided</span><strong id="monthly-saved">—</strong><span id="annual-saved" class="muted-label">Annual CO₂ estimate —</span><span id="monthly-money" class="muted-label">Estimated monthly travel savings —</span><span id="annual-money" class="muted-label">Estimated annual travel savings —</span></div><div id="scenario-chart" class="scenario-chart" role="img" aria-label="Scenario comparison will appear after calculation"><p class="empty-state">Calculate to compare your current, improved and maximum-shift scenarios.</p></div><div id="impact-explanation" class="small-note">The estimate is not a city AQI reduction. It excludes vehicle manufacturing, fuel supply chains and other lifecycle emissions.</div></div>
+    </div>
+    <details class="method-details"><summary>Show formulas and emission-factor assumptions</summary><div class="details-body"><p>Passenger-kilometre emissions = (vehicle tailpipe factor in g CO₂ / vehicle-km ÷ assumed occupancy) × passenger-km. Avoided kg = (baseline g − alternative g) ÷ 1,000. Annual estimate = monthly estimate × 12.</p><p>Factors used: two-wheeler 29 g/km; three-wheeler 78 g/km; private four-wheeler 140 g/km; bus 788 g/km. Bus and shared-vehicle estimates allocate vehicle emissions across assumed occupants. These are indicative tailpipe CO₂ factors from the India EV Digest 2023 document citing CPCB/MoHUA material; actual fleet, fuel, load and driving conditions vary. Negative savings mean the selected alternative has a higher estimated per-passenger tailpipe factor.</p><p>Walking/cycling are treated as zero direct tailpipe emissions for the trip, not zero lifecycle emissions.</p></div></details>
+  </section>
+
+
+  <section id="digital-twin" class="section-shell">
+    <div class="section-heading"><div><p class="eyebrow">06 / HOUSEHOLD POLLUTION DIGITAL TWIN</p><h2>Compare three realistic household futures.</h2><p>Compare travel, household electricity, weekly activity plans and monthly costs side by side. Change assumptions and see the direct modelled impact without mixing carbon, AQI or personal exposure.</p></div><span class="status-chip">Scenario model · estimates</span></div>
+    <form id="twin-form" class="panel twin-form">
+      <div class="twin-form-grid">
+        <div class="field"><label for="twin-household">Household size</label><input id="twin-household" type="number" min="1" max="20" value="4" required></div>
+        <div class="field"><label for="twin-travellers">Household members who travel</label><input id="twin-travellers" type="number" min="1" max="20" value="2" required></div>
+        <div class="field"><label for="twin-km">Monthly distance per traveller (km)</label><input id="twin-km" type="number" min="0" max="10000" value="120" required></div>
+        <div class="field"><label for="twin-budget">Monthly improvement budget (₹)</label><input id="twin-budget" type="number" min="0" max="10000000" value="1000" required></div>
+      </div>
+      <div class="twin-scenario-inputs">
+        <fieldset class="twin-scenario"><legend>01 · Current household routine</legend>
+          <div class="field"><label for="twin-current-mode">Current transport mode</label><select id="twin-current-mode"><option value="two-wheeler">Two-wheeler</option><option value="car" selected>Private car</option><option value="auto">Auto-rickshaw</option><option value="bus">Public bus</option><option value="walk">Walk / cycle</option></select></div>
+          <div class="field"><label for="twin-current-occupancy">People per vehicle</label><input id="twin-current-occupancy" type="number" min="1" max="100" value="1" required></div>
+          <div class="field"><label for="twin-current-spend">Monthly travel spend (₹)</label><input id="twin-current-spend" type="number" min="0" max="10000000" value="2500" required></div>
+          <div class="field"><label for="twin-current-activity">Outdoor activity plan (minutes/week)</label><input id="twin-current-activity" type="number" min="0" max="10080" value="150" required></div>
+        </fieldset>
+        <fieldset class="twin-scenario"><legend>02 · Improved low-emission routine</legend>
+          <div class="field"><label for="twin-improved-mode">Improved transport mode</label><select id="twin-improved-mode"><option value="two-wheeler">Two-wheeler</option><option value="car">Private car</option><option value="auto">Auto-rickshaw</option><option value="bus" selected>Public bus</option><option value="walk">Walk / cycle</option></select></div>
+          <div class="field"><label for="twin-improved-occupancy">People per vehicle</label><input id="twin-improved-occupancy" type="number" min="1" max="100" value="30" required></div>
+          <div class="field"><label for="twin-improved-spend">Monthly travel spend (₹)</label><input id="twin-improved-spend" type="number" min="0" max="10000000" value="1200" required></div>
+          <div class="field"><label for="twin-improved-reduction">Electricity reduction (%)</label><input id="twin-improved-reduction" type="number" min="0" max="90" value="10" required></div>
+          <div class="field"><label for="twin-improved-activity">Outdoor activity plan (minutes/week)</label><input id="twin-improved-activity" type="number" min="0" max="10080" value="120" required></div>
+        </fieldset>
+        <fieldset class="twin-scenario"><legend>03 · Maximum practical low-emission routine</legend>
+          <div class="field"><label for="twin-stretch-mode">Stretch transport mode</label><select id="twin-stretch-mode"><option value="two-wheeler">Two-wheeler</option><option value="car">Private car</option><option value="auto">Auto-rickshaw</option><option value="bus">Public bus</option><option value="walk" selected>Walk / cycle</option></select></div>
+          <div class="field"><label for="twin-stretch-occupancy">People per vehicle</label><input id="twin-stretch-occupancy" type="number" min="1" max="100" value="1" required></div>
+          <div class="field"><label for="twin-stretch-spend">Monthly travel spend (₹)</label><input id="twin-stretch-spend" type="number" min="0" max="10000000" value="400" required></div>
+          <div class="field"><label for="twin-stretch-reduction">Electricity reduction (%)</label><input id="twin-stretch-reduction" type="number" min="0" max="90" value="20" required></div>
+          <div class="field"><label for="twin-stretch-activity">Outdoor activity plan (minutes/week)</label><input id="twin-stretch-activity" type="number" min="0" max="10080" value="100" required></div>
+        </fieldset>
+      </div>
+      <div class="twin-form-grid twin-energy">
+        <div class="field"><label for="twin-kwh">Monthly electricity use (kWh)</label><input id="twin-kwh" type="number" min="0" max="100000" value="250" required></div>
+        <div class="field"><label for="twin-tariff">Electricity tariff (₹/kWh)</label><input id="twin-tariff" type="number" min="0" max="1000" step="0.01" value="7" required></div>
+        <div class="field"><label for="twin-grid-factor">Grid factor (kg CO₂/kWh)</label><input id="twin-grid-factor" type="number" min="0" max="5" step="0.001" value="0.675" required><small>Editable provisional value inherited from the earlier prototype; verify against the current official CEA publication before formal reporting.</small></div>
+        <div class="field"><label for="twin-aqi">Current AQI (optional, if known)</label><input id="twin-aqi" type="number" min="0" max="500" placeholder="Leave blank if unavailable"><small>Enter a current local reading. Modelled or stale data should not be treated as a live station reading.</small></div>
+      </div>
+      <button class="button button-primary" type="submit">Run household digital twin →</button>
+    </form>
+    <div id="twin-results" class="twin-results panel" aria-live="polite">
+      <p class="empty-state">Enter your household assumptions and run the model to compare all three scenarios.</p>
+    </div>
+    <div class="notice-card"><span aria-hidden="true">i</span><p><strong>Keep the measures separate:</strong> CO₂ is a household emissions estimate; AQI is an outdoor air-quality indicator used only for broad activity-planning context. This tool does not calculate indoor PM2.5, personal exposure, inhaled dose, health outcomes or citywide AQI change. It cannot identify the cleanest hour from one AQI value. Follow current official local advisories and never compromise essential ventilation or combustion safety.</p></div>
+  </section>
+
+  <section id="indoor" class="section-shell">
+    <div class="section-intro"><p class="eyebrow">06 / INDOOR AIR HUB</p><h2>Make the air at home work harder for you.</h2><p>Indoor exposure depends on outdoor infiltration and pollution created inside. These practical steps focus on source control first.</p></div>
+    <div class="indoor-grid">
+      <article class="panel indoor-card"><span class="feature-icon">⌁</span><h3>Ventilate at the right time</h3><p>When outdoor air is cleaner, open windows for a practical period. During high outdoor pollution, reduce unnecessary outdoor-air entry — but do not compromise safe ventilation, combustion safety or building requirements.</p><span class="tagline">Timing matters</span></article>
+      <article class="panel indoor-card"><span class="feature-icon">◌</span><h3>Filter particles safely</h3><p>Choose a mechanical HEPA cleaner sized for the room, keep doors/windows managed, and maintain filters. Avoid ionisers or ozone-generating devices marketed as air cleaners.</p><span class="tagline">Mechanical filtration</span></article>
+      <article class="panel indoor-card"><span class="feature-icon">✧</span><h3>Control indoor sources</h3><p>Use an externally vented kitchen exhaust where possible. Avoid indoor smoking, incense and candles. Keep cooking emissions down and never block required combustion-air or ventilation openings.</p><span class="tagline">Source reduction first</span></article>
+      <article class="panel indoor-card"><span class="feature-icon">≋</span><h3>Clean and manage dampness</h3><p>Wet-mop and damp-wipe to limit dust resuspension. Fix leaks, dry damp areas and keep humidity comfortable. Avoid mixing cleaning chemicals; follow product labels.</p><span class="tagline">Simple routines</span></article>
+    </div>
+    <div class="notice-card"><span aria-hidden="true">!</span><p><strong>Do not seal a home unsafely.</strong> Ventilation needs depend on the building, fuel appliances and outdoor conditions. If you have fuel-burning appliances, maintain required ventilation and carbon-monoxide safety. Seek qualified advice for persistent dampness, mould or ventilation problems.</p></div>
+  </section>
+
+  <section id="family" class="section-shell family-section">
+    <div class="section-heading"><div><p class="eyebrow">07 / FAMILY & COMMUNITY</p><h2>Turn good intentions into a shared habit.</h2><p>A private household checklist and a shareable action card — no fake community counts or public activity feed.</p></div><span id="progress-label" class="status-chip">0 of 5 complete</span></div>
+    <div class="family-grid"><div class="panel checklist-panel"><h3>This week's clean-air checklist</h3><div id="checklist" class="checklist">
+      <label><input type="checkbox" value="advisory"> Check a local official air-quality advisory</label>
+      <label><input type="checkbox" value="source"> Reduce one indoor pollution source</label>
+      <label><input type="checkbox" value="clean"> Damp-wipe or wet-mop a room</label>
+      <label><input type="checkbox" value="travel"> Replace or combine one suitable vehicle trip</label>
+      <label><input type="checkbox" value="filter"> Check ventilation or filter maintenance</label>
+    </div><button id="reset-checklist" type="button" class="button button-quiet">Reset this checklist</button></div>
+      <div class="panel share-panel"><div class="share-art" aria-hidden="true">✳</div><h3>Share a clean-air reminder</h3><p>Send a practical, non-alarmist checklist to family or neighbours.</p><blockquote id="share-copy">Check local air-quality updates. Reduce indoor smoke and dust. Time ventilation when outdoor air improves. Choose shared transport when practical. Protect children and older adults from heavy outdoor exertion during poor-air periods.</blockquote><button id="share-button" type="button" class="button button-secondary">Share / copy action card ↗</button><span id="share-status" class="form-status" role="status" aria-live="polite"></span></div></div>
+  </section>
+
+  <section id="methodology" class="section-shell methodology-section">
+    <div class="section-intro"><p class="eyebrow">08 / ABOUT & METHODOLOGY</p><h2>Trust is part of clean air.</h2><p>ClearSkies separates measured facts, model outputs, assumptions and AI-generated suggestions.</p></div>
+    <div class="method-grid">
+      <article class="panel"><h3>Air-quality data</h3><p>Open-Meteo Air Quality API provides CAMS model pollutant forecasts. Values are modelled estimates, not direct CPCB station readings. The app calculates an indicative sub-index using CPCB concentration breakpoints from available trailing hourly model values, and labels the result accordingly. It does not represent an official regulatory AQI.</p><a href="https://open-meteo.com/en/docs/air-quality-api" target="_blank" rel="noopener noreferrer">Open-Meteo API documentation ↗</a></article>
+      <article class="panel"><h3>Indian AQI categories</h3><p>India's National AQI categories are Good (0–50), Satisfactory (51–100), Moderate (101–200), Poor (201–300), Very Poor (301–400) and Severe (401–500). The CPCB method uses pollutant-specific sub-indices; the maximum valid sub-index determines the AQI.</p><a href="https://app.cpcbccr.com/ccr_docs/About_AQI.pdf" target="_blank" rel="noopener noreferrer">CPCB AQI methodology ↗</a></article>
+      <article class="panel"><h3>Emissions methodology</h3><p>Transport calculator uses documented tailpipe CO₂ factors as a transparent approximation. Passenger occupancy is adjustable. Monthly rupee savings are calculated only from the household's own entered cost estimates. It does not calculate total lifecycle CO₂e, local pollutant exposure or citywide AQI change.</p><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/mar/doc202431317801.pdf" target="_blank" rel="noopener noreferrer">India EV Digest 2023 source ↗</a></article>
+      <article class="panel"><h3>AI limitations & privacy</h3><p>Gemini is optional and called only by the server. The app sends your question and the saved household profile when you submit a question. Do not include sensitive health details. If Gemini is unavailable, deterministic local guidance remains available. AI suggestions are not medical advice.</p><a href="https://ai.google.dev/gemini-api/docs" target="_blank" rel="noopener noreferrer">Gemini API documentation ↗</a></article>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">✳</span>ClearSkies</a><p>Breathe Smarter. Live Lighter.</p><p class="small-note">General educational guidance only. Follow official local advisories and qualified medical advice for symptoms.</p></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

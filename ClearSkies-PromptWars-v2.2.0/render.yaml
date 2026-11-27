@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: clearskies-promptwars
+    runtime: node
+    plan: free
+    buildCommand: npm test && npm run check
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_API_KEY
+        sync: false
